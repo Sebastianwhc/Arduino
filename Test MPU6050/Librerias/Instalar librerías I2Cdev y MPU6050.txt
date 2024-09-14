@@ -1,0 +1,3 @@
+Pegar carpetas en
+
+C:\Program Files (x86)\Arduino\libraries
