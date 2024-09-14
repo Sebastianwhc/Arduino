@@ -1,0 +1,55 @@
+
+#include <ArduinoJson.h>
+
+void setup() {
+ 
+
+// Stream& input;
+
+
+String json = "{\"Universidad\":\"Santo Tomas\",\"Seccional\":\"Bucaramanga\",\"Carrera\":\"Ingenieria Mecatronica\",\"Acreditacion alta calidad\":true,\"Decano\":\"Cesar Valencia\",\"Numero de catedras\":73,\"Docentes_de_Sistemas_Embebidos\":{\"ID1\":1234,\"Nombre1\":\"Jose Jorge\",\"Apellido1\":\"Carreño\",\"ID\":98765,\"Nombre\":\"Carlos\",\"Apellido\":\"Pimentel\"}}";
+
+StaticJsonDocument<512> doc;
+
+DeserializationError error = deserializeJson(doc,json);
+
+if (error) {
+  Serial.print("deserializeJson() failed: ");
+  Serial.println(error.c_str());
+  return;
+}
+
+const char* Universidad = doc["Universidad"]; // "Santo Tomás"
+const char* Seccional = doc["Seccional"]; // "bucaramanga"
+const char* Carrera = doc["Carrera"]; // "Ingenieria Mecatronica"
+bool Acreditacion_alta_calidad = doc["Acreditacion alta calidad"]; // true
+const char* Decano = doc["Decano"]; // "Cesar Valencia"
+int Numero_de_catedras = doc["Numero de catedras"]; // 73
+
+JsonObject Docentes_de_Sistemas_Embebidos = doc["Docentes de Sistemas Embebidos"];
+int Docentes_de_Sistemas_Embebidos_ID1 = Docentes_de_Sistemas_Embebidos["ID1"]; // 1234
+const char* Docentes_de_Sistemas_Embebidos_Nombre1 = Docentes_de_Sistemas_Embebidos["Nombre1"];
+const char* Docentes_de_Sistemas_Embebidos_Apellido1 = Docentes_de_Sistemas_Embebidos["Apellido1"];
+long Docentes_de_Sistemas_Embebidos_ID = Docentes_de_Sistemas_Embebidos["ID"]; // 98765
+const char* Docentes_de_Sistemas_Embebidos_Nombre = Docentes_de_Sistemas_Embebidos["Nombre"];
+const char* Docentes_de_Sistemas_Embebidos_Apellido = Docentes_de_Sistemas_Embebidos["Apellido"];
+
+  Serial.print("Universidad: "); Serial.println(Universidad);
+  Serial.print("Seccional: "); Serial.println(Seccional);
+  Serial.print("Carrera: "); Serial.println(Carrera);
+  Serial.print("Decano: "); Serial.println(Decano);
+
+  Serial.println();
+
+  Serial.print("ID1: "); Serial.println(Docentes_de_Sistemas_Embebidos_ID1);
+  Serial.print("Nombre1: "); Serial.println(Docentes_de_Sistemas_Embebidos_Nombre1);
+  Serial.print("Apellido 1: "); Serial.println(Docentes_de_Sistemas_Embebidos_Apellido1);
+  Serial.print("ID: "); Serial.println(Docentes_de_Sistemas_Embebidos_ID);
+  Serial.print("Nombre: "); Serial.println(Docentes_de_Sistemas_Embebidos_Nombre);
+  Serial.print("Apellido : "); Serial.println(Docentes_de_Sistemas_Embebidos_Apellido);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+}

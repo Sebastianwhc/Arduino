@@ -1,0 +1,34 @@
+
+#include <ArduinoJson.h>
+
+void setup() {
+ 
+
+String json;
+
+StaticJsonDocument<384> doc;
+
+
+doc["Universidad"] = "Santo Tomás";
+doc["Seccional"] = "bucaramanga";
+doc["Carrera"] = "Ingenieria Mecatronica";
+doc["Acreditacion alta calidad"] = true;
+doc["Decano"] = "Cesar Valencia";
+doc["Numero de catedras"] = 73;
+
+JsonObject Docentes_de_Sistemas_Embebidos = doc.createNestedObject("Docentes de Sistemas Embebidos");
+Docentes_de_Sistemas_Embebidos["ID1"] = 1234;
+Docentes_de_Sistemas_Embebidos["Nombre1"] = "Jose";
+Docentes_de_Sistemas_Embebidos["Apellido1"] = "Carreno";
+Docentes_de_Sistemas_Embebidos["ID"] = 98765;
+Docentes_de_Sistemas_Embebidos["Nombre"] = "Carlos";
+Docentes_de_Sistemas_Embebidos["Apellido"] = "Pimentel";
+
+serializeJson(doc, json);
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+}
